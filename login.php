@@ -40,9 +40,8 @@
     <link href="css/login.css" rel="stylesheet" />
 
     <?php 
-    session_start();
-    ?>
-
+       session_start();
+     ?>
   </head>
 
   <body>
@@ -56,10 +55,10 @@
           <div class="col-7 px-5 pt-5">
             <h1 class="font-weight-bold py-3">Login</h1>
             <h4>sign in to your account</h4>
-            < method="POST" action="index.html">
+            <form method="POST" action="login.php">
               <div class="form-row">
                 <div class="col-7">
-                  <input name="email" type="email" class="form-control p-4 my-3" placeholder="Email-Address">
+                  <input name="username" type="text" class="form-control p-4 my-3" placeholder="Username value="">
                 </div>
               </div>
               <div class="form-row">
@@ -69,49 +68,35 @@
               </div>
               <div class="form-row">
                 <div class="col-7">
-                  <button type="button" name="masuk" value="login" class="btn_login mt-3 mb-5">LOGIN</button>
+                <input type="submit" name="submit" value="Login" class="btn_login mb-5">
                 </div>
               </div>
 
-              <?php 
-               if(isset($_POST['masuk'])){
- 
-                $email = $_POST['email'];
-                $password_kamu = $_POST['password'];
-     
-                if($email == 'user'){
-     
-                    if($password_kamu == 'user'){
-     
-                        $_SESSION['user'] = $username;
-                        header('location: index.html');
-     
-                    }else{
-                        echo "
-                        <script>
-                            alert(' PASSWORD SALAH ... !! ');
-                        </script>
-                    ";
-                    }
-     
-                }else{
-                    echo "
-                        <script>
-                            alert(' USERNAME TIDAK TERDAFTAR..!! ');
-                        </script>
-                    ";
-                }
-            }
-     
-         ?>
+              </
               
               <a href="#">forgot password</a>
               <p >Don't Have Account <a href="#">Register Here</a></p>
             </form>
+
+            
           </div>
         </div>
       </div>
     </section>
+    <?php
+    if(isset($_POST['submit'])){
+    $username=$_POST["username"];
+    $password=$_POST["password"];
+    
+    if($username=="admin" AND $password=="admin")
+    {
+        $_SESSION["username"]=$username;
+        header("location:index.html");
+    }else{
+        echo "gagal";
+    }
+  }
+    ?>
     <!--End form login  -->
 
     <!-- jQery -->
